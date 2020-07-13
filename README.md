@@ -5,11 +5,15 @@
 - Openshift CLI
 - Openshift Cluster with namespace created for deployment
 
-Clone this repository and run the following commands to deploy an RHPAM 7.7 Authoring Environement based on the default Red Hat templates:
+Run the following commands to deploy an RHPAM 7.7 Authoring Environement based on the default Red Hat templates:
+
+## Create a New Namespace
+
+Run the following commands to deploy an RHPAM 7.7 Authoring Environement based on the default Red Hat templates:
 
     oc new-project rhpam-77
-
-If your cluster already has access to pull images from the Red Hat Registry skip the step below, otherwise complete the following steps to enable Registry access (see [https://access.redhat.com/RegistryAuthentication] for more options on how to enable access):
+## Enable Red Hat Registry Access to Pull Images
+If your cluster already has access to pull images from the Red Hat Registry this section, otherwise complete the following steps to enable Registry access (see [https://access.redhat.com/RegistryAuthentication] for more options on how to enable access):
 
 1. Go to [https://access.redhat.com/terms-based-registry/](https://access.redhat.com/terms-based-registry/) and create a new service account or use an existing one
 2. Click on the "Openshift Secret" tab under your service account
@@ -17,6 +21,7 @@ If your cluster already has access to pull images from the Red Hat Registry skip
 
 Now that the rhpam-77 namespace has your registry service account pull secret, you will be able to pull Red Hat images into your namespace. Alternatively, if the cluster is configured to pull images into the "openshift" or "default" namespace, you can import image streams into those namespaces and then pull them from there into "rhpam-77" for use in deployments.
 
+## Create the Application
 Once registry access is enabled run the following commands to deploy the Authoring template:
 
     oc apply -f rhpam77-image-streams.yaml
