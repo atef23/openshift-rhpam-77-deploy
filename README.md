@@ -5,7 +5,7 @@
 - Openshift CLI
 - Openshift Cluster with namespace created for deployment
 
-Run the following commands to deploy an RHPAM 7.7 Authoring Environement based on the default Red Hat templates:
+Clone this repository and run the following commands to deploy an RHPAM 7.7 Authoring Environement based on the default Red Hat templates:
 
     oc new-project rhpam-77
 
