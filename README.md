@@ -25,8 +25,6 @@ Now that the rhpam-77 namespace has your registry service account pull secret, y
 Once registry access is enabled run the following commands to deploy the Authoring template:
 
     oc apply -f rhpam77-image-streams.yaml
-
-    oc create -f deploy/role.yaml
     
     oc apply -f templates/kieserver-app-secret-template.yml
     
