@@ -47,16 +47,19 @@ Business Central Authoring Environment:
 
 Immutable Kie-Server:
 
-	oc new-app -f templates/rhpam77-authoring.yaml -p BUSINESS_CENTRAL_HTTPS_SECRET=businesscentral-app-secret \
-	 -p KIE_SERVER_HTTPS_SECRET=kieserver-app-secret \
-	 -p APPLICATION_NAME=rhpam-77-authoring-env \
-	 -p CREDENTIALS_SECRET=rhpam-credentials \
-	 -p DB_VOLUME_CAPACITY=2Gi \
-	 -p IMAGE_STREAM_NAMESPACE=rhpam-77 \
-	 -p KIE_SERVER_IMAGE_STREAM_NAME=rhpam-kieserver-rhel8 \
-	 -p IMAGE_STREAM_TAG=7.7.0 \
-	 -p BUSINESS_CENTRAL_VOLUME_CAPACITY=2Gi \
-	 -p GIT_HOOKS_DIR=/home/jboss/git-hooks
+	 oc new-app -f templates/rhpam77-prod-immutable-kieserver.yaml \
+	  -p KIE_SERVER_HTTPS_SECRET=kieserver-app-secret \
+	  -p APPLICATION_NAME=rhpam-77-immutable-env \
+	  -p CREDENTIALS_SECRET=rhpam-credentials \
+	  -p DB_VOLUME_CAPACITY=2Gi \
+	  -p IMAGE_STREAM_NAMESPACE=rhpam-kie-77 \
+	  -p KIE_SERVER_IMAGE_STREAM_NAME=rhpam-kieserver-rhel8 \
+	  -p IMAGE_STREAM_TAG=7.7.0 \
+	  -p POSTGRESQL_MAX_PREPARED_TRANSACTIONS=100 \
+	  -p KIE_SERVER_POSTGRESQL_DIALECT=org.hibernate.dialect.PostgreSQLDialect \
+	  -p KIE_SERVER_CONTAINER_DEPLOYMENT=rhpam-kieserver-test=com.myspace:kjar-test-runner:1.0.0-SNAPSHOT \
+	  -p SOURCE_REPOSITORY_URL=https://github.com/atef23/test-empty-bc-project \
+	  -p KIE_SERVER_MGMT_DISABLED=true
 
 Under "routes" open the secure Business Central route and login with user/password adminUser/adminPassword
 
