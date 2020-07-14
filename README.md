@@ -1,5 +1,5 @@
 
-# Deploying a RHPAM 7.7 Authoring Environment
+# Deploying a RHPAM 7.7 in Openshift
 
 **Requirements:**
 - Openshift CLI
@@ -33,7 +33,9 @@ Once registry access is enabled run the following commands to deploy the Authori
     oc apply -f templates/businesscentral-app-secret-template.yml
     
     oc create secret generic rhpam-credentials --from-literal=KIE_ADMIN_USER=adminUser --from-literal=KIE_ADMIN_PWD=adminPassword
-    
+
+Business Central Authoring Environment:
+
     oc new-app -f templates/rhpam77-authoring.yaml -p BUSINESS_CENTRAL_HTTPS_SECRET=businesscentral-app-secret \
 	 -p KIE_SERVER_HTTPS_SECRET=kieserver-app-secret \
 	 -p APPLICATION_NAME=rhpam-77-authoring-env \
@@ -45,5 +47,18 @@ Once registry access is enabled run the following commands to deploy the Authori
 	 -p BUSINESS_CENTRAL_VOLUME_CAPACITY=2Gi \
 	 -p GIT_HOOKS_DIR=/home/jboss/git-hooks
 
-   Under "routes" open the secure Business Central route and login with user/password adminUser/adminPassword
+Immutable Kie-Server:
+
+	oc new-app -f templates/rhpam77-authoring.yaml -p BUSINESS_CENTRAL_HTTPS_SECRET=businesscentral-app-secret \
+	 -p KIE_SERVER_HTTPS_SECRET=kieserver-app-secret \
+	 -p APPLICATION_NAME=rhpam-77-authoring-env \
+	 -p CREDENTIALS_SECRET=rhpam-credentials \
+	 -p DB_VOLUME_CAPACITY=2Gi \
+	 -p IMAGE_STREAM_NAMESPACE=rhpam-77 \
+	 -p KIE_SERVER_IMAGE_STREAM_NAME=rhpam-kieserver-rhel8 \
+	 -p IMAGE_STREAM_TAG=7.7.0 \
+	 -p BUSINESS_CENTRAL_VOLUME_CAPACITY=2Gi \
+	 -p GIT_HOOKS_DIR=/home/jboss/git-hooks
+
+Under "routes" open the secure Business Central route and login with user/password adminUser/adminPassword
 
