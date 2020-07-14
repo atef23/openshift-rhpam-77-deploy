@@ -569,6 +569,10 @@ objects:
             readOnly: true
           - name: "${APPLICATION_NAME}-rhpamcentr-pvol"
             mountPath: "/opt/kie/data"
+          - name: post-commit-script-volume
+            mountPath: /home/jboss/git-hooks
+          - name: post-commit-default-config-volume
+            mountPath: /home/jboss/.bcgithook
           livenessProbe:
             httpGet:
               path: /rest/healthy
@@ -722,6 +726,12 @@ objects:
         - name: "${APPLICATION_NAME}-rhpamcentr-pvol"
           persistentVolumeClaim:
             claimName: "${APPLICATION_NAME}-rhpamcentr-claim"
+        - name: post-commit-script-volume
+          configMap:
+            name: git-post-commit-script
+        - name: post-commit-default-config-volume
+          configMap:
+            name: git-post-commit-default-config
 - kind: DeploymentConfig
   apiVersion: v1
   metadata:

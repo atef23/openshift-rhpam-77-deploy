@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git-post-commit-default-config
+data:
+  default.conf:
+    GIT_TYPE=""
+
+    GIT_USER_NAME=''
+
+    GIT_PASSWD=''
+
+    GIT_URL='https://github.com/atef23'
+    
+    LOG_LOCATION=$HOME
