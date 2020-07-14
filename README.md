@@ -31,6 +31,12 @@ Once registry access is enabled run the following commands to deploy the Authori
     oc apply -f templates/businesscentral-app-secret-template.yml
     
     oc create secret generic rhpam-credentials --from-literal=KIE_ADMIN_USER=adminUser --from-literal=KIE_ADMIN_PWD=adminPassword
+    
+For Business Central with Git Hooks enabled, modify and add the following config maps to the namespace:
+
+	oc create -f git-post-commit-script-template.yaml
+	oc create -f git-post-commit-default-config-template.yaml
+
 
 Business Central Authoring Environment:
 
