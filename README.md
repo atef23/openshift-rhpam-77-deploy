@@ -13,7 +13,7 @@ Run the following commands to deploy an RHPAM 7.7 Authoring Environement based o
 
     oc new-project rhpam-77
 ## Enable Red Hat Registry Access to Pull Images
-If your cluster already has access to pull images from the Red Hat Registry this section, otherwise complete the following steps to enable Registry access (see [https://access.redhat.com/RegistryAuthentication] for more options on how to enable access):
+If your cluster already has access to pull images from the Red Hat Registry skip this section, otherwise complete the following steps to enable Registry access (see [https://access.redhat.com/RegistryAuthentication] for more options on how to enable access):
 
 1. Go to [https://access.redhat.com/terms-based-registry/](https://access.redhat.com/terms-based-registry/) and create a new service account or use an existing one
 2. Click on the "Openshift Secret" tab under your service account
